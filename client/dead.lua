@@ -114,7 +114,7 @@ AddEventHandler('gameEventTriggered', function(event, data)
                 TriggerServerEvent("qb-log:server:CreateLog", "death", Lang:t('logs.death_log_title', {playername = playerName, playerid = GetPlayerServerId(playerid)}), "red", Lang:t('logs.death_log_message', {killername = killerName, playername = playerName, weaponlabel = weaponLabel, weaponname = weaponName}))
                 deathTime = Config.DeathTime
                 OnDeath()
-                DeathTimer()
+                -- DeathTimer()
             end
         end
     end
@@ -147,9 +147,10 @@ CreateThread(function()
                 if not isInHospitalBed then
                     if deathTime > 0 then
                         deathTime = 0
+                        TriggerEvent("hospital:client:RespawnAtHospital")
                         -- DrawTxt(0.93, 1.44, 1.0,1.0,0.6, Lang:t('info.respawn_txt', {deathtime = math.ceil(deathTime)}), 255, 255, 255, 255)
-                    else
-                        DrawTxt(0.865, 1.44, 1.0, 1.0, 0.6, Lang:t('info.respawn_revive', {holdtime = hold, cost = Config.BillCost}), 255, 255, 255, 255)
+                    -- else
+                        -- DrawTxt(0.865, 1.44, 1.0, 1.0, 0.6, Lang:t('info.respawn_revive', {holdtime = hold, cost = Config.BillCost}), 255, 255, 255, 255)
                     end
                 end
 
